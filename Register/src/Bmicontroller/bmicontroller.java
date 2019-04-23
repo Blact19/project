@@ -58,19 +58,6 @@ public class bmicontroller extends HttpServlet {
 		 bmi registerBean = new bmi();
 	 Integer Height =Integer.parseInt((String)request.getParameter("Height"));
 	 Double Weight =Double.parseDouble((String)request.getParameter("Weight"));
-	 List<RegisterBean> list=new ArrayList<RegisterBean>();
-	 //String FirstName=l.getFirstName();
-	 RegisterDAO reg=new RegisterDAO();
-		/* list=reg.getUser();
-		 HttpSession session=request.getSession(false);
-		 for(RegisterBean R:list)
-		 {
-			if(R.getUserId().equals(session.getAttribute("key1").toString()) && R.getPassword().equals(session.getAttribute("key2").toString()))
-			{
-				registerBean.setPatient_Id(R.getPatient_id());
-				registerBean.setFirstName(R.getFirstName());
-			}
-		 }*/
 	 
 	 String p=(String) request.getSession(false).getAttribute("UserId");
 	

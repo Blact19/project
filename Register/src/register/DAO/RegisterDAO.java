@@ -22,12 +22,13 @@ package register.DAO;
 		 
 		 Connection con = null;
 		 PreparedStatement preparedStatement = null;
-		 
+		 PreparedStatement preparedStatement1 = null;
 		 try
 		 {
 		 con = DBConnection.createConnection();
-		 String query = "insert into patient_reg(FirstName,LastName,Age,Gender,ContactNumber,EmailAddress,city,state,userId,Password) values (?,?,?,?,?,?,?,?,?,?)"; //Insert user details into the table 'USERS'
-		 preparedStatement = con.prepareStatement(query); //Making use of prepared statements here to insert bunch of data
+		 String query = "insert into patient_reg(FirstName,LastName,Age,Gender,ContactNumber,EmailAddress,city,state,userId,Password) values (?,?,?,?,?,?,?,?,?,?)"; 
+		 preparedStatement = con.prepareStatement(query);
+		 //Making use of prepared statements here to insert bunch of data
 		 preparedStatement.setString(1, FirstName);
 		 preparedStatement.setString(2, LastName);
 		 preparedStatement.setInt(3, Age);
@@ -38,12 +39,23 @@ package register.DAO;
 		 preparedStatement.setString(8, state);
 		 preparedStatement.setString(9, UserId);
 		 preparedStatement.setString(10, Password);
-       
-      
-		 
 		 int i= preparedStatement.executeUpdate();
+		 String query1 = "insert into register(FirstName,LastName,Age,Gender,ContactNumber,EmailAddress,city,state,userId,Password,role) values (?,?,?,?,?,?,?,?,?,?,?)";
+		 preparedStatement1 = con.prepareStatement(query1);
+		 preparedStatement1.setString(1, FirstName);
+		 preparedStatement1.setString(2, LastName);
+		 preparedStatement1.setInt(3, Age);
+		 preparedStatement1.setString(4, Gender);
+		 preparedStatement1.setLong(5, ContactNumber);
+		 preparedStatement1.setString(6, EmailAddress);
+		 preparedStatement1.setString(7, city);
+		 preparedStatement1.setString(8, state);
+		 preparedStatement1.setString(9, UserId);
+		 preparedStatement1.setString(10, Password);
+		 preparedStatement1.setString(11, "Patient");
+		 int i1= preparedStatement1.executeUpdate();
 		 
-		 if (i!=0) 
+		 if (i!=0 && i1!=0) 
 		 return "SUCCESS";
 		 }
 		 catch(SQLException e)
@@ -77,7 +89,7 @@ package register.DAO;
 		 try
 		 {
 		 con = DBConnection.createConnection();
-		 String query = "insert into register(FirstName,LastName,Age,Gender,ContactNumber,EmailAddress,city,state,userId,Password) values (?,?,?,?,?,?,?,?,?,?)"; //Insert user details into the table 'USERS'
+		 String query = "insert into register(FirstName,LastName,Age,Gender,ContactNumber,EmailAddress,city,state,userId,Password,role) values (?,?,?,?,?,?,?,?,?,?,?)"; //Insert user details into the table 'USERS'
 		 preparedStatement = con.prepareStatement(query); //Making use of prepared statements here to insert bunch of data
 		 preparedStatement.setString(1, FirstName);
 		 preparedStatement.setString(2, LastName);
@@ -89,6 +101,7 @@ package register.DAO;
 		 preparedStatement.setString(8, state);
 		 preparedStatement.setString(9, UserId);
 		 preparedStatement.setString(10, Password);
+		 preparedStatement.setString(11, "Doctor");
       
      
 		 

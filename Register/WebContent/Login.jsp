@@ -39,8 +39,7 @@ function validate()
  <td><input type="password" name="Password" /></td>
  </tr>
  <tr> <!-- refer to the video to understand request.getAttribute() -->
- <td><span style="color:red"><%=(request.getAttribute("errMessage") == null) ? ""
- : request.getAttribute("errMessage")%></span></td>
+ <td><span style="color:red"><%=(request.getAttribute("errMessage") == null) ? "" : request.getAttribute("errMessage")%></span></td>
  </tr>
  <tr>
  <td></td>

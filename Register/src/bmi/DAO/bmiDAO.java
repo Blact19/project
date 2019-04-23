@@ -1,20 +1,10 @@
 package bmi.DAO;
-import java.util.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
-import javax.servlet.http.HttpServlet;
 import bmiBean.bmi;
-import register.DAO.RegisterDAO;
-import register.bean.RegisterBean;
 import bmi.DAO.bmiconnection;
-import Login.Bean.*;
-import Login.DAO.LoginConnection;
-
-import javax.servlet.http.HttpSession;;
 public class bmiDAO {
 
 		
@@ -22,8 +12,11 @@ public class bmiDAO {
 		 {
 			int Height=bmiBean.getHeight();
 			double Weight=bmiBean.getWeight();
+			
 		 double height=Height*0.01;
 			double BMIRate=Weight/(Math.pow(height,2));
+			bmiBean.setBMI(BMIRate);
+			
 		 Connection con = null;
 		 PreparedStatement preparedStatement = null;
 		 

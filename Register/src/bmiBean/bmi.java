@@ -3,6 +3,13 @@ package bmiBean;
 public class bmi {
 	private int Height;
 	private double Weight;
+	private double BMI;
+	public double getBMI() {
+		return BMI;
+	}
+	public void setBMI(double bMI) {
+		BMI = bMI;
+	}
 	private int Patient_Id;
 	private String UserId;
 	public String getUserId() {

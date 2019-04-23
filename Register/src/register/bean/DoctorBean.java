@@ -2,6 +2,13 @@ package register.bean;
 
 public class DoctorBean {
 	private String FirstName;
+	private String table;
+	public String getTable() {
+	return table;
+}
+public void setTable(String table) {
+	this.table = "register";
+}
 		public DoctorBean() {
 		super();
 	}
