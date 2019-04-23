@@ -6,13 +6,17 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
+
+
+
 <%
-String id = request.getParameter("UserId");
+String UserId = request.getParameter("UserId");
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://localhost/";
 String database = "patient";
 String userid = "root";
 String password = "root";
+//String id = request.getParameter("UserId");
 try {
 Class.forName(driver);
 } catch (ClassNotFoundException e) {
@@ -21,13 +25,17 @@ e.printStackTrace();
 Connection connection = null;
 Statement statement = null;
 ResultSet resultSet = null;
+
+
 %>
 <html>
 <body>
-<h1>Retrieve data from database in jsp</h1>
 
 
-<table align="center">
+<h1>Retrieve data </h1>
+
+
+<table id="myTable">
 <table border="1">
 <tr>
 <td>UserId</td>
@@ -41,20 +49,22 @@ ResultSet resultSet = null;
 <td>state</td>
 <td>Password</td>
 <td>update</td>
-
 </tr>
+
                      
 <%
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
+
 String sql ="select * from patient_reg";
+
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
 
 <tr>
-<td><%=resultSet.getString("UserId") %></td>
+<td><input type="text" name="UserId" value="<%=resultSet.getString("UserId") %>"></td>
 <td><%=resultSet.getString("FirstName") %></td>
 <td><%=resultSet.getString("LastName") %></td>
 <td><%=resultSet.getInt("Age") %></td>
@@ -64,10 +74,14 @@ while(resultSet.next()){
 <td><%=resultSet.getString("city") %></td>
 <td><%=resultSet.getString("state") %></td>
 <td><%=resultSet.getString("Password") %></td>
-<td><a href="Next.jsp?id=<%=resultSet.getString("UserId")%>">update</a></td>
+<td><a href="Next.jsp?UserId=<%=resultSet.getString("UserId")%>">update</a></td>
 
 </tr>
 
+
+
+
+ 
 
 <%
 }
@@ -79,3 +93,4 @@ e.printStackTrace();
 </table>
 </body>
 </html>
+

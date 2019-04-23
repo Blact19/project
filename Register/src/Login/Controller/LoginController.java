@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
         }
        else if(userValidate.equals("SUCCESS1"))
        {
-              request.getRequestDispatcher("/Next.jsp").forward(request, response);
+              request.getRequestDispatcher("/Doctor1.html").forward(request, response);
        }
         else
         {

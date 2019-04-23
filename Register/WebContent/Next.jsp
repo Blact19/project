@@ -3,9 +3,9 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%
-String id = request.getParameter("UserId");
+String UserId = request.getParameter("UserId");
 String driver = "com.mysql.jdbc.Driver";
-String connectionUrl = "jdbc:mysql://localhost/";
+String connectionUrl = "jdbc:mysql://localhost/patient?";
 String database = "patient";
 String userid = "root";
 String password = "root";
@@ -23,16 +23,16 @@ PreparedStatement preparedStatement = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-PreparedStatement sta = connection.prepareStatement("select * from patient_reg where userId = ?");    
-sta.setString(1,id );  
+PreparedStatement sta = connection.prepareStatement("select * from patient_reg where UserId='"+request.getParameter("UserId")+"'");    
+//sta.setString(9,UserId );  
 resultSet = sta.executeQuery();
 while(resultSet.next()){
 %>
 <!DOCTYPE html>
 <html>
 <body>
-<h1>Update data from database in jsp</h1>
-<form method="post" action="update-process.jsp">
+<h1>Updation of Data</h1>
+<form method="post" action="updateprocess.jsp">
 <table align="center">
 
                      <tr>
@@ -40,7 +40,7 @@ while(resultSet.next()){
                      </tr>
                      <tr>
                      <td><input type="hidden" name="UserId" value="<%=resultSet.getString("UserId") %>">
-<input type="text" name="UserId" value="<%=resultSet.getString("UserId") %>">
+                      UserId: "<%=resultSet.getString("UserId") %>"
 </tr>
 
                      <tr>
@@ -80,7 +80,7 @@ while(resultSet.next()){
 
                      <tr>
                            <td>City</td>
-                           <td><input type="text" name="city value="<%=resultSet.getString("city value") %>"></td>
+                           <td><input type="text" name="city=" value="<%=resultSet.getString("city") %>"></td>
                      </tr>
 
                      <tr>
@@ -96,7 +96,7 @@ while(resultSet.next()){
 
                      <tr>
                            <td colspan="2" align="center"><input type="submit"
-                                  value="Submit"></input></td>
+                                  value="Update"></input></td>
                      </tr>
               </table>
 
@@ -110,4 +110,5 @@ e.printStackTrace();
 }
 %>
 </body>
-</html>
+</html> 
+
